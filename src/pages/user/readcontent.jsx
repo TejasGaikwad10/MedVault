@@ -15,6 +15,7 @@ import Bar from "./read/bar";
 import Basicinfo from "./read/bacsicInfo";
 import Contactinfo from "./read/contactindo";
 import FamilyMedHistory from "./read/pasthistory";
+import PastRecords from "./read/pastReports";
 async function getdoc(docRef) {
     const docSnap = await getDoc(docRef);
     return docSnap;
@@ -109,6 +110,10 @@ function ReadContent({member,muid}){
             <FamilyMedHistory member={member} data={privatedisplay} handleFind={handleFind} setCode={setCode} />
 
             :
+            activeStep===3?
+            <PastRecords data={privatedisplay} handleFind={handleFind} setCode={setCode} />
+            :
+
             null
 
             

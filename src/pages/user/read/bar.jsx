@@ -16,6 +16,10 @@ function Bar({activeStep,setActiveStep}){
             <h5 onClick={()=>setActiveStep(2)} >
                 Past Medical History
             </h5>
+
+            <h5 onClick={()=>setActiveStep(3)} >
+                Past Reports 
+            </h5>
                 
             
             </div>  

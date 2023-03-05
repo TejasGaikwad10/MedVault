@@ -118,11 +118,13 @@ export const StateContextProvider = ({ children }) => {
         data.pastReports=[rdata];
 
       }
+      var public_data=await getPublicInfo(uuid);
+      public_data.code=code;
       console.log(data);
 
 
 
-      await AddPatient(data,code,uuid,uuid);
+      await AddPatient(public_data,data,code,uuid,uuid);
       
      
      

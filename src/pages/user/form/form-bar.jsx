@@ -8,12 +8,11 @@ const steps = [
     {
       label: 'Contact Information',
       description:
-        'An ad group contains one or more ads which target a shared set of keywords.',
+        'An ad group containre ads which target a shared set of keywords.',
     },
     {
       label: 'Past Medical History',
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your a.`,
+      description: `Try out diffeance your a.`,
     },
     
   ];
