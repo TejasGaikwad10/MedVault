@@ -32,6 +32,8 @@ import {
 } from "firebase/firestore";
 import Sidebar from "./sidebar";
 import RightPanel from "./rightpanel";
+import { flexbox } from "@mui/system";
+import Form from "./form/form";
 async function getdoc(docRef) {
   const docSnap = await getDoc(docRef);
   return docSnap;
@@ -261,119 +263,184 @@ function WriteContent({member,update,setupdate}) {
   return (
  
 
-    <div>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+    // <div style={{height:'90vh',display:'flex',flexDirection:'column',justifyContent:'space-around'}}>
+    //   <div>
+    //     {<h1>Add Your Details</h1>}
+    //   </div>
+    //   <Stepper style={{color:"white"}} activeStep={activeStep}>
+    //     {steps.map((label, index) => {
+    //       const stepProps = {};
+    //       const labelProps = {};
 
-          return (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === 0 ? (
-        <div>
-          <div class="form-group d-flex">
-            
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              defaultValue={`${data?.name ? data.name : ""}`}
-              placeholder="Enter Your name"
-            />
-           
-          </div>
-          <label for="exampleInputEmail1">Email Your name</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            defaultValue={`${data?.email ? data.email : ""}`}
-          />
-          <input
-            type="text"
-            class="form-control"
-            id="code"
-            aria-describedby="emailHelp"
-            placeholder="Enter code"
-          />
-        
-          <input type="file" id="user-image" />
-        </div>
-      ) : activeStep === 1 ? (
-        <div class='d-flex'>
-          <div>
-          {dis.map((d, index) => {
-            return (
-              <div  >
-                <input
-                  type="checkbox"
-                  placeholder="heml"
-                  class="btn-check"
-                  id={`btn-check-outlined ${index}`}
-                  autocomplete="off"
-                  defaultChecked={
-                    data?.disarr
-                      ? data.disarr[index]
-                        ? data.disarr[index]
-                        : 0
-                      : 0
-                  }
-                  onChange={(e) =>
-                    e.target.value === "on" ? disease(index) : null
-                  }
-                />
-                <label
-                  class="btn btn-outline-primary"
-                  for={`btn-check-outlined ${index}`}
-                >
-                  {d}
-                </label>
-              
-              </div>
-            );
-          })}
+    //       return (
+    //         <Step style={{color:"white"}} key={label}>
+    //           <StepLabel style={{color:"white"}} >{index===activeStep?<h4 style={{color:'white',margin:'20px'}}>{label}</h4>:<p style={{color:"white",margin:'20px'}}>{label}</p>}</StepLabel>
+    //         </Step>
+    //       );
+    //     })}
+    //   </Stepper>
+    //   <div style={{height:'60vh',width:'40vw',display:'flex',flexDirection:'column',justifyContent:'space-around',alignItems:'center'}}>
 
-          </div>
+      
+    //   {activeStep === 0 ? (
+    //     <div style={{width:'30vw',height:'40vh',display:'flex',flexDirection:'column',justifyContent:'space-around',alignItems:'center'}}>
           
-            <input type="checkbox" value={0} id='disease-checkbox'/>
-        </div>
-      ) : 
-      activeStep===2?
-      (
-        <div class='d-flex'>
-          <input placeholder="enter family contact info" type="text" id='family-contact-info'/>
+    //         <input
+    //           type="text"
+    //           class="form-control"
+    //           id="name"
+    //           defaultValue={`${data?.name ? data.name : ""}`}
+    //           placeholder="Enter Your name"
+    //         />
+           
+          
+          
+    //       <input
+    //         type="email"
+    //         class="form-control"
+    //         id="email"
+    //         aria-describedby="emailHelp"
+    //         placeholder="Enter email"
+    //         defaultValue={`${data?.email ? data.email : ""}`}
+    //       />
+    //       <input
+    //         type="text"
+    //         class="form-control"
+    //         id="code"
+    //         aria-describedby="emailHelp"
+    //         placeholder="Enter code"
+    //       />
+        
+    //       <input type="file" id="user-image" />
+    //     </div>
+    //   ) : activeStep === 1 ? (
+    //     <div class='d-flex' style={{height:'40vh'}}>
+    //       <div style={{height:'100%',display:'flex',flexDirection:'column',justifyContent:'space-around'}}>
+    //       {dis.map((d, index) => {
+    //         return (
+    //           <div  style={{width:'30vw',display:'flex',justifyContent:"space-around"}}>
+    //             {
+    //               (2*index)<dis.length?
+    //             <div>
+    //             <input
+    //               type="checkbox"
+    //               placeholder="heml"
+    //               class="btn-check"
+    //               id={`btn-check-outlined ${index}`}
+    //               autocomplete="off"
+    //               defaultChecked={
+    //                 data?.disarr
+    //                   ? data.disarr[2*index]
+    //                     ? data.disarr[2*index]
+    //                     : 0
+    //                   : 0
+    //               }
+    //               onChange={(e) =>
+    //                 e.target.value === "on" ? disease(2*index) : null
+    //               }
+    //             />
+    //             <label
+    //               class="btn btn-outline-primary"
+    //               for={`btn-check-outlined ${2*index}`}
+    //             >
+    //               {dis[2*index]}
+    //             </label>
 
-          <input type="checkbox" value={0} id='family-contact-info-checkbox'/>
+    //             </div>
+    //             :
+    //             <div></div>
+    //       }
+                
+
+    //             { (2*index)+1<dis.length?<div>
+    //             <input
+    //               type="checkbox"
+    //               placeholder="heml"
+    //               class="btn-check"
+    //               id={`btn-check-outlined ${(2*index)+1}`}
+    //               autocomplete="off"
+    //               defaultChecked={
+    //                 data?.disarr
+    //                   ? data.disarr[index+1]
+    //                     ? data.disarr[index+1]
+    //                     : 0
+    //                   : 0
+    //               }
+    //               onChange={(e) =>
+    //                 e.target.value === "on" ? disease((2*index)+1) : null
+    //               }
+    //             />
+    //             <label
+    //               class="btn btn-outline-primary"
+    //               for={`btn-check-outlined ${(2*index)+1}`}
+    //             >
+    //               {dis[(2*index)+1]}
+    //             </label>
+
+    //             </div>:
+    //             <div></div>
+
+    //             }
+             
+                
+              
+    //           </div>
+    //         );
+    //       })}
+
+    //       </div>
+           
+    //       <div class="form-check">
+    //       <label class="form-check-label" for="flexCheckDefault">
+    //           Private ?
+    //         </label>
+    //         <input class="form-check-input" type="checkbox" defaultChecked={0} id="disease-checkbox"/>
+           
+    //       </div>
+    //     </div>
+    //   ) : 
+    //   activeStep===2?
+    //   (
+        
+    //     <div class='d-flex'>
+    //       <input placeholder="enter family contact info" type="text" id='family-contact-info'/>
+
+    //       <div class="form-check d-flex">
+    //       <p style={{marginLeft:'10px'}} >
+    //         Private ?
+    //         </p>
+    //         <input class="form-check-input" type="checkbox" defaultChecked={0} id="family-contact-info-checkbox"/>
+            
+    //       </div>
 
 
-        </div>
-      )
-    :null
-    }
+    //     </div>
+    //   )
+    // :null
+    // }
+    // </div>
+    // <div style={{width:'100%',display:'flex',justifyContent:'space-around'}}>
+    // <button
+    //     type="button"
+    //     class="btn btn-success"
+    //     onClick={() => setActiveStep((p) => (p > 0 ? p - 1 : p))}
+    //   >
+    //     Back
+    //   </button>
 
-      <button
-        type="button"
-        class="btn btn-success"
-        onClick={() => setActiveStep((p) => (p > 0 ? p - 1 : p))}
-      >
-        Back
-      </button>
+    //   <button
+    //     type="button"
+    //     class="btn btn-success"
+    //     onClick={() => next(activeStep)}
+    //   >
+    //     {activeStep===2?'submit': 'Next'}
+    //   </button>
 
-      <button
-        type="button"
-        class="btn btn-success"
-        onClick={() => next(activeStep)}
-      >
-        {activeStep===2?'submit': 'Next'}
-      </button>
-    </div>
+    // </div>
+
+     
+    // </div>
+    <Form member={member} update={update} setupdate={setupdate} />
   );
 }
 export default WriteContent;

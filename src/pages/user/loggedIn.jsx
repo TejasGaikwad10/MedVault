@@ -38,11 +38,13 @@ async function getdoc(docRef) {
   return docSnap;
 }
 
-function LoggedInUser({ id }) {
+function LoggedInUser({}) {
+ 
   // var uid=uuidv4();
-  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user,logout } = useAuth0();
   const [uid, setuuid] = useState("");
   const [update,setupdate]=useState(0);
+  var id=user?.sub?.substring(14);
   async function setdoc(id, uid) {
     await setDoc(doc(database, "users", id), {
       uid: uid,
@@ -67,16 +69,21 @@ function LoggedInUser({ id }) {
     // }
     return docf;
   }
-  useEffect(() => {
+
+  useEffect(()=>{
     const docRef = doc(database, "users", `${id}`);
-    getdoc(docRef).then((docf) => {
-      console.log(docf);
-      if (docf._document) {
-        setbool(1);
-        setdocref(docf);
-      }
-    });
-  }, []);
+    getdoc(docRef).then((docf)=>{
+        console.log(docf)
+        if(docf._document){
+            setbool(1);
+            setdocref(docf);
+        }
+        
+    })
+   
+
+  },[user])
+ 
   useEffect(() => {
     const docRf = doc(database, "users", `${user?.sub?.substring(14)}`);
     getdoc(docRf).then((df) => {
@@ -90,21 +97,16 @@ function LoggedInUser({ id }) {
 
   return (
     <div>
-      {/* <Navbar /> */}
-      {/* {console.log(docref?.exists)} */}
+   
       {
-        // console.log(user?.sub?.substring(14));
-        // setid(user?.sub?.substring(14));
-        // var id=user?.sub?.substring(14);
-        // if(id && id!=='')
-        // {
+       
 
-        bool === 0 ? (
+        isAuthenticated?bool === 0 ? (
           // setfirst(0);
           <div>
             {/* <input type="text" /> */}
             <button onClick={() => setdoc(id, uuidv4())}>
-              {" "}
+            
               create new user
             </button>
             <input type="text" id="already-user-id" />
@@ -114,17 +116,20 @@ function LoggedInUser({ id }) {
                 setdoc(id, document.getElementById("already-user-id").value)
               }
             >
-              {" "}
+              
               already have an userid?
+            </button>
+            <button onClick={logout}>
+
             </button>
             {
               // setdocref(dr())
             }
           </div>
         ) : (
-          <div class="d-flex" style={{ justifyContent: "space-between" }}>
+          <div class="d-flex" style={{width:'100vw', justifyContent: "" }}>
             <Sidebar />
-            <div style={{}}>
+            <div style={{display:'flex',flex:1}}>
               <Routes>
                 <Route path="/" element={<WriteContent member={0} update={update }setupdate={setupdate} />} />
                 <Route path="/addmember" element={<WriteContent member={1} update={update }setupdate={setupdate}/>} />
@@ -132,11 +137,24 @@ function LoggedInUser({ id }) {
                 <Route path="/delete" element={<Delete />} />
               </Routes>
             </div>
+            {/* <RightPanel/> */}
+           
+            
 
             <RightPanel uid={uid} update={update }setupdate={setupdate}/>
             {/* <WriteContent/> */}
           </div>
         )
+        :
+        <button onClick={()=>{loginWithRedirect({
+          appState: {
+            returnTo: window.location.href
+          }
+        })}
+      }
+        >
+          log in
+        </button>
       }
     </div>
   );

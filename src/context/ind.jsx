@@ -18,39 +18,17 @@ export const StateContextProvider = ({ children }) => {
     const { mutateAsync: delPatient } = useContractWrite(contract, 'delPatient');
   
 
-    const AddPatient=async (data,code,puuid,cuuid)=>{
+    const AddPatient=async (publicdata,privatedata,code,puuid,cuuid)=>{
         try{
-          var public_data={
-            name:data.name,
-            email:data.email,
-            uid:puuid
-
-
-
-          }
-          const private_data={
-            imageURL:data.imageURL
-            
-          }
-          if(data.pastReports){
-            private_data.pastReports=data.pastReports;
-          }
-          if(data.discheck===0){
-            public_data.disarr=data.disarr;
-          }
-          else{
-            private_data.disarr=data.disarr;
-          }
-          if(data.famInfocheck===0){
-            public_data.famInfo=data.famInfo;
-          }
-          else{
-            private_data.famInfo=data.famInfo;
-          }
+         
+          console.log(privatedata);
+          var a=publicdata;
+          a.uid=puuid;
+         
          
           // const public_data=data;
-          var publicText=JSON.stringify(public_data)
-          var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(private_data), code).toString();
+          var publicText=JSON.stringify(a)
+          var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(privatedata), code).toString();
           console.log(ciphertext);
              await addPatient([ciphertext,publicText,puuid,cuuid])
 

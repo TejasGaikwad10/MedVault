@@ -11,6 +11,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { app, database, storage } from "./firebaseConfig.js";
+import { useNavigate } from "react-router-dom";
 import {
   setDoc,
   collection,
@@ -32,6 +33,8 @@ import LoggedInUser from "./pages/user/loggedIn";
 import AdminDash from "./pages/admin/dashboard-admin";
 import { Link } from "react-router-dom";
 import Admin from "./pages/admin/admin";
+import { display } from "@mui/system";
+
 async function getdoc(docRef) {
   const docSnap = await getDoc(docRef);
   return docSnap;
@@ -41,7 +44,9 @@ async function setdoc(id) {
     // id=
   });
 }
+
 function App() {
+    const navigate=useNavigate();
   const [uid, setuid] = useState("");
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [docref, setdocref] = useState();
@@ -51,22 +56,23 @@ function App() {
     id = user?.sub?.substring(14);
     //  console
   }
+  const[userbool,setuser]=useState(0);
+  console.log(userbool);
+  
 
   return (
-    <div>
+    <div  style={{width:'100%',height:'100vh'}} >
       {/* {  isAuthenticated? */}
       
       <Routes>
-        <Route path="/*" element={isAuthenticated?<LoggedInUser id={id} /> :<button onClick={() => loginWithRedirect()}>Log In</button>} />
-        <Route path="/admin/*" element={<Admin />} />
+        <Route path="/*" element={isAuthenticated? <LoggedInUser id={id} /> : <button type="button" onClick={loginWithRedirect} class="btn btn-primary btn-lg">Login</button>}/>
+        
+      
+        
+     
+        <Route path="/admin/*" element={ <Admin />} />
       </Routes>
-      {/* : */}
-      {/* <div>
- <button onClick={() => loginWithRedirect()}>Log In</button>
-            <Link to='/admin'>
-            admin
-            </Link> */}
-      {/* </div> */}
+     
     </div>
     // <AdminDash/>
   );

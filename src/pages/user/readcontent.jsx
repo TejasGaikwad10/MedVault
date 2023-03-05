@@ -31,9 +31,10 @@ function ReadContent(){
         const docRf = doc(database, "users", `${user?.sub?.substring(14)}`);
         getdoc(docRf).then((df)=>{
         //   console.log(df.data());
-        var id=df?.data()?.uid;
+        var id=df?.data()?.uid?df?.data()?.uid:null;
           setuuid(df?.data()?.uid);
-          handleFindPublicInfo(id);
+            if(id){
+            handleFindPublicInfo(id);}
     
         })
 
@@ -52,11 +53,12 @@ function ReadContent(){
     const handleFindPublicInfo = async (uid)=>{
      
         const obj=await getPublicInfo(uid);
-        if(obj===''){
-            alert('invalid key')
-        }
+        // if(obj===''){
+        //     alert('invalid key')
+        // }
         // console.log(obj);
         setdisplay(obj);
+        
 
         
     } 
@@ -74,18 +76,23 @@ function ReadContent(){
 
 
     return(
-        <div>
-            {/* <button class='connect' style={{height:'100px',width:'100px'}} onClick={()=>{connect()}}>
-
-            </button>
-            <h1>
-                HEllo
-            </h1> */}
+        <div style={{color:'black'}}>
+            
       
         <form onSubmit={handleFind}>
+            <div class='d-flex' style={{alignItems:'center'}}>
+           {' Name:  '}<h1>{display?.name}</h1>
+
+            </div>
+            <div class='d-flex' style={{alignItems:'center'}}>
+           {' Email:  '}<h3>{display?.email}</h3>
+
+            </div>
+
+           
 
 
-        code<input onChange={(e)=>{setCode(e.target.value)}} type="text" />
+        <input onChange={(e)=>{setCode(e.target.value)}} type="text" />
         
         <button  type="submit" style={{height:'40px',width:'40px'}}></button>
             <h3>{display?.name}</h3>

@@ -8,7 +8,7 @@ function RightPanel({uid,update}){
         contract,
         getPatient,
         getMembers,
-        getPublicInfo,
+        getPublicInfo
       } = useStateContext();
     const [parray, setparray] = useState([]);
     const [memberids, setmemberids] = useState([]);
@@ -46,15 +46,26 @@ function RightPanel({uid,update}){
       
 
     return (
-        <div style={{height:'100vh' ,width:'16vw',backgroundColor:'black',flexDirection:'column',display:'flex',justifyContent:"space-between"}} >
+        <div style={{height:'100vh',width:'15vw',backgroundColor:'black',display:'flex',flexDirection:'column',justifyContent:'space-between',alignItems:'center'}}>
+            <div style={{marginTop:'20px'}}>
+            <button type="button" class="btn btn-primary" onClick={connect}>Connect to Wallet</button>
+            </div>
+            <div style={{height:'40vh'}} >
+                <h1>
+                    Members
+                </h1>
             {
                 parray.map((p)=>{
-                    return(<h1>{p.name}</h1>)
+                    return(<h2 style={{marginTop:'5vh'}}>{p.name}</h2>)
 
                 })
             }
 
         </div>
+
+
+        </div>
+        
 
     );
 }
