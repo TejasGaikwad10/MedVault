@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 function ContactInfo({privatedata,setprivatedata}){
+    console.log(privatedata);
     const dummy=useRef();
    
         const [emergencyContact,setEC]=useState([]);
@@ -39,7 +40,7 @@ function ContactInfo({privatedata,setprivatedata}){
           id="standard-basic"
           label="Mobile Number"
           variant="standard"
-          onChange={(e)=>{var a=privatedata;a.contact=e.target.value;setprivatedata(a)}}
+          onChange={(e)=>{var a=privatedata;a.contact=e.target.value;setprivatedata({...a})}}
         />
       </div>
       <div class='container' style={{overflowX:"auto",MaxHeight:'50vh',width:'45vw'}} >
@@ -50,7 +51,7 @@ function ContactInfo({privatedata,setprivatedata}){
         
         
         {
-            emergencyContact.map((n,index)=>{
+            emergencyContact?.map(({val,relation},index)=>{
                 return (
                     <div class='d-flex' style={{justifyContent:'space-between',alignItems:'center',marginTop:'30px'}}>
                         <div style={{display:'flex',justifyContent:"space-between",width:'35vw'}}>
@@ -62,12 +63,12 @@ function ContactInfo({privatedata,setprivatedata}){
               fontSize: "20px",
             },
           }}
-          
+          onChange={(e)=>{var a=emergencyContact;a[index].val=e.target.value;setEC([...a])}}
           id="standard-basic"
           label={`Mobile Number ${index+1}`}
           variant="standard"
         />
-        <TextField id="outlined-basic" label="Relation" variant="outlined" />
+        <TextField id="outlined-basic" label="Relation" variant="outlined"  onChange={(e)=>{var a=emergencyContact;a[index].relation=e.target.value;setEC([...a])}} />
         
 
         </div>
@@ -82,7 +83,7 @@ function ContactInfo({privatedata,setprivatedata}){
             })
             
         }
-        <div id="addEC" ref={dummy} onClick={()=>{console.log('hi');var a=emergencyContact;a.push('');setEC([...a]);}}>
+        <div id="addEC" ref={dummy} onClick={()=>{console.log('hi');var a=emergencyContact;a.push({val:"",relation:''});setEC([...a]);}}>
             add contact
         </div>
       </div>

@@ -32,6 +32,23 @@ function BasicInfo({publicdata,setpublicdata,member}) {
           onChange={(e)=>{var a=publicdata;a.name=e.target.value;setpublicdata({...a})}}
         />
       </div>
+      <div>
+        <h2 class="label">code</h2>
+        <TextField
+          inputProps={{
+            style: {
+              height: "30px",
+              width: "35vw",
+              fontSize: "20px",
+            },
+          }}
+          id="standard-basic"
+          label="Enter Code"
+          variant="standard"
+          onChange={(e)=>{var a=publicdata;a.code=e.target.value;setpublicdata({...a})}}
+        />
+      </div>
+
 
 {
 member?

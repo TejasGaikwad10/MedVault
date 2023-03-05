@@ -57,6 +57,8 @@ function LoggedInUser({}) {
   }
   const [bool, setbool] = useState(0);
   const [docref, setdocref] = useState();
+  const [muid, setmuid] = useState('');
+
   function dr() {
     // console.log(id);
     const docRef = doc(database, "users", `${id}`);
@@ -135,13 +137,14 @@ function LoggedInUser({}) {
                 <Route path="/addmember" element={<WriteContent member={1} update={update }setupdate={setupdate}/>} />
                 <Route path="/read" element={<ReadContent />} />
                 <Route path="/delete" element={<Delete />} />
+                <Route path="/member" element={<ReadContent member={1} muid={muid} />} />
               </Routes>
             </div>
             {/* <RightPanel/> */}
            
             
 
-            <RightPanel uid={uid} update={update }setupdate={setupdate}/>
+            <RightPanel uid={uid} update={update }setupdate={setupdate} muid={muid} setmuid={setmuid}/>
             {/* <WriteContent/> */}
           </div>
         )

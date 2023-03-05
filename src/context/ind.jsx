@@ -20,15 +20,19 @@ export const StateContextProvider = ({ children }) => {
 
     const AddPatient=async (publicdata,privatedata,code,puuid,cuuid)=>{
         try{
+         var codee=publicdata.code
          
-          console.log(privatedata);
           var a=publicdata;
           a.uid=puuid;
+          a.code='';
+
+          console.log(publicdata.code,'pleaseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+
          
          
           // const public_data=data;
           var publicText=JSON.stringify(a)
-          var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(privatedata), code).toString();
+          var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(privatedata), codee).toString();
           console.log(ciphertext);
              await addPatient([ciphertext,publicText,puuid,cuuid])
 

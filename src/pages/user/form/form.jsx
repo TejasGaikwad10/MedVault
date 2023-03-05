@@ -142,6 +142,7 @@ async function setdoc(id, uid) {
         // const rootCid = await client.put(fileInput.files);
         
         // setdata(t);
+        console.log(publicdata)
         
     
        
@@ -166,7 +167,7 @@ async function setdoc(id, uid) {
             <h1 style={{fontSize:'3.5vw'}}>Your Medical Form</h1>
 
             </div>
-            <div style={{display:'flex',backgroundColor:'white'}}>
+            <div style={{display:'flex',backgroundColor:'white',width:'90vh'}}>
             <FormBar member={member} activeStep={activeStep} setActiveStep={setActiveStep} handleAddUser={handleAddUser} handleAddMember={handleAddMember} />
             <div>{
                 activeStep===0?
