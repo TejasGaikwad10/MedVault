@@ -7,6 +7,7 @@ import FamMedHistory from "./Family-past-history";
 import FormBar from "./form-bar";
 import PastMedInfo from "./past-medical-info";
 import { useAuth0 } from "@auth0/auth0-react";
+import './form.css';
 import {
   getAuth,
   createUserWithEmailAndPassword,

@@ -136,7 +136,7 @@ function LoggedInUser({}) {
                 <Route path="/" element={<WriteContent member={0} update={update }setupdate={setupdate} />} />
                 <Route path="/addmember" element={<WriteContent member={1} update={update }setupdate={setupdate}/>} />
                 <Route path="/read" element={<ReadContent />} />
-                <Route path="/delete" element={<Delete />} />
+                <Route path="/delete" element={<Delete  />} />
                 <Route path="/member" element={<ReadContent member={1} muid={muid} />} />
               </Routes>
             </div>

@@ -7,13 +7,14 @@ function BasicInfo({publicdata,setpublicdata,member}) {
     console.log(publicdata);
   return (
     <div
+    class='container'
       style={{
-        height: "60vh",
+
+        height: "70vh",
         margin: "10%",
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "space-around",
+        
         flexDirection: "column",
+        overflow:'auto'
       }}
     >
       <div>
@@ -21,11 +22,13 @@ function BasicInfo({publicdata,setpublicdata,member}) {
         <TextField
           inputProps={{
             style: {
-              height: "30px",
-              width: "35vw",
-              fontSize: "20px",
+                height: "30px",
+                width: "35vw",
+                fontSize: "20px",
+             
             },
           }}
+          className='textfield'
           id="standard-basic"
           label="Name"
           variant="standard"
@@ -37,11 +40,13 @@ function BasicInfo({publicdata,setpublicdata,member}) {
         <TextField
           inputProps={{
             style: {
-              height: "30px",
-              width: "35vw",
-              fontSize: "20px",
+                height: "30px",
+                width: "35vw",
+                fontSize: "20px",
+               
             },
           }}
+          className='textfield'
           id="standard-basic"
           label="Enter Code"
           variant="standard"
@@ -60,8 +65,10 @@ member?
               height: "30px",
               width: "35vw",
               fontSize: "20px",
+             
             },
           }}
+          className='textfield'
           id="standard-basic"
           label="Relation"
           variant="standard"
@@ -82,11 +89,13 @@ null
         <TextField
           inputProps={{
             style: {
-              height: "30px",
-              width: "35vw",
-              fontSize: "20px",
+                height: "30px",
+                width: "35vw",
+                fontSize: "20px",
+                
             },
           }}
+          className='textfield'
           id="standard-basic"
           label="Email"
           variant="standard"

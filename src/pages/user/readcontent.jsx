@@ -16,6 +16,7 @@ import Basicinfo from "./read/bacsicInfo";
 import Contactinfo from "./read/contactindo";
 import FamilyMedHistory from "./read/pasthistory";
 import PastRecords from "./read/pastReports";
+
 async function getdoc(docRef) {
     const docSnap = await getDoc(docRef);
     return docSnap;
@@ -35,16 +36,21 @@ function ReadContent({member,muid}){
     const [uid,setuuid]=useState('');
     const [activeStep,setActiveStep]=useState(0);
     useEffect(()=>{
-       if(member===0){
-        const docRf = doc(database, "users", `${user?.sub?.substring(14)}`);
-        getdoc(docRf).then((df)=>{
-        //   console.log(df.data());
-        var id=df?.data()?.uid?df?.data()?.uid:null;
-          setuuid(df?.data()?.uid);
-            if(id){
-            handleFindPublicInfo(id);}
+       if(member){
+        
+        
+}
+else{
+    const docRf = doc(database, "users", `${user?.sub?.substring(14)}`);
+    getdoc(docRf).then((df)=>{
+    //   console.log(df.data());
+    var id=df?.data()?.uid?df?.data()?.uid:null;
+      setuuid(df?.data()?.uid);
+        if(id){
+        handleFindPublicInfo(id);}
+
+    })
     
-        })
 }
 
       },[])

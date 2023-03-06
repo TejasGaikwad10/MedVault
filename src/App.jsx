@@ -65,7 +65,19 @@ function App() {
       {/* {  isAuthenticated? */}
       
       <Routes>
-        <Route path="/*" element={isAuthenticated? <LoggedInUser id={id} /> : <button type="button" onClick={loginWithRedirect} class="btn btn-primary btn-lg">Login</button>}/>
+        <Route path="/*" element={isAuthenticated? <LoggedInUser id={id} /> 
+        :<div style={{height:'100vh' ,width:'100vw',display:"flex",alignItems:'center',justifyContent:"space-around"}}>
+                 <button style={{height:'60px'}} type="button" onClick={loginWithRedirect} class="btn btn-primary btn-lg">Login as User</button>
+                 <Link to='admin'>
+                 <button style={{height:'60px'}} type="button" class="btn btn-primary btn-lg">
+                
+                    Admin
+                
+                 </button>
+                 </Link>
+                
+            </div>}/>
+       
         
       
         

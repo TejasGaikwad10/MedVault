@@ -2,6 +2,7 @@ import { TextField } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import './form.css';
 function ContactInfo({privatedata,setprivatedata}){
     console.log(privatedata);
     const dummy=useRef();

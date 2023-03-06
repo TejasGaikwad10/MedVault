@@ -24,7 +24,7 @@ function UserInfo({data}){
     return (
         <div style={{width:'100vw',height:'100vh',display:"flex"}} >
              
-        <div id='rem-div' style={{width:'14vw',height:'100vh',backgroundColor:"green",display:'flex',flexDirection:'column',justifyContent:"space-around"}}>
+        <div id='rem-div' style={{width:'14vw',height:'100vh',backgroundColor:"#0ad0b2",display:'flex',flexDirection:'column',justifyContent:"space-around"}}>
             <h5 onClick={()=>setselected(0)}>
                 Read
             </h5>
